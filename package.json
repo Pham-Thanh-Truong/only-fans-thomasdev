@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.13.5",
     "next": "15.5.4",
     "pdfjs-dist": "^5.4.296",
     "react": "19.1.0",

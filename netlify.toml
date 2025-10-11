@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Netlify Next.js plugin
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 # Next.js rewrites for client-side routing
 [[redirects]]
   from = "/*"

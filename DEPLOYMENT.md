@@ -9,6 +9,10 @@
 - **Build command:** `npm run build`
 - **Publish directory:** `.next`
 
+### Plugin Configuration:
+- **Netlify Next.js Plugin:** `@netlify/plugin-nextjs` (đã cài đặt)
+- **Plugin config:** Đã cấu hình trong `netlify.toml`
+
 ### Environment Variables (nếu cần):
 - Không cần environment variables cho project này
 
@@ -61,11 +65,12 @@ public/
 
 ## Lưu ý:
 
-- Project sử dụng Next.js app thông thường (không phải static export)
+- Project sử dụng Next.js app thông thường với Netlify plugin
 - PDF được render bằng react-pdf library
-- Images được optimize bởi Next.js
+- Images được optimize bởi Next.js và Netlify
 - Responsive design cho mọi thiết bị
 - CV page có PDF viewer với navigation controls
+- Plugin Netlify tự động xử lý routing và optimizations
 
 ## Troubleshooting:
 
@@ -74,4 +79,7 @@ Nếu gặp lỗi khi deploy:
 2. Kiểm tra publish directory: `.next`
 3. Đảm bảo Node.js version >= 20
 4. Kiểm tra file `netlify.toml` có đúng cấu hình
-5. Nếu PDF không load được, kiểm tra file `/assets/cv.pdf` có tồn tại
+5. Đảm bảo plugin `@netlify/plugin-nextjs` đã được cài đặt
+6. Nếu PDF không load được, kiểm tra file `/assets/cv.pdf` có tồn tại
+7. Kiểm tra Netlify build logs để xem plugin có hoạt động không
+

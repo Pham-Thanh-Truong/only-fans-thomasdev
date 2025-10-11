@@ -7,7 +7,10 @@ const nextConfig: NextConfig = {
   // Optimize images
   images: {
     domains: [],
+    unoptimized: false, // Let Netlify handle optimization
   },
+  // Netlify specific optimizations
+  trailingSlash: false,
 };
 
 export default nextConfig;

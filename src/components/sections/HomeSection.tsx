@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import useTranslation from '@/hooks/useTranslation';
 
 const HomeSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsVisible(true);
@@ -31,27 +33,28 @@ const HomeSection = () => {
           {/* Main Content */}
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Pham Thanh Truong
+              {t('home.title')}
             </h1>
             <h2 className="text-xl md:text-2xl text-primary mb-4 font-semibold">
-              Front-End Developer
+              {t('home.subtitle')}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Front-End Developer với 3 năm kinh nghiệm trong phát triển web và mobile 
-              sử dụng React, React Native, và Next.js. Chuyên về xây dựng giao diện 
-              responsive, hiệu suất cao và tích hợp hệ thống VoIP SIP.
+              {t('home.description')}
             </p>
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {['React', 'Next.js', 'TypeScript', 'React Native', 'Node.js', 'Laravel'].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 bg-accent text-accent-foreground rounded-full text-sm font-medium"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="mb-4">
+              <p className="text-sm text-muted-foreground mb-3">{t('home.techStack')}</p>
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                {['React', 'Next.js', 'TypeScript', 'React Native', 'Node.js', 'Laravel'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-4 py-2 bg-accent text-accent-foreground rounded-full text-sm font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* CTA Buttons */}
@@ -60,13 +63,13 @@ const HomeSection = () => {
                 href="#contact"
                 className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
               >
-                Liên hệ với tôi
+                {t('home.contactMe')}
               </a>
               <a
                 href="#experience"
                 className="inline-flex items-center px-6 py-3 border border-border text-foreground rounded-lg font-medium hover:bg-accent transition-colors"
               >
-                Xem kinh nghiệm
+                {t('home.viewExperience')}
               </a>
               <a
                 href="/cv"
@@ -75,7 +78,7 @@ const HomeSection = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Xem CV
+                {t('home.viewCV')}
               </a>
             </div>
           </div>

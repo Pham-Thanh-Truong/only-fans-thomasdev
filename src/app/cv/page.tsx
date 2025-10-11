@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import useTranslation from '@/hooks/useTranslation';
 
 // Dynamic import PDFViewer to avoid SSR issues
 const PDFViewer = dynamic(() => import('@/components/PDFViewer'), {
@@ -18,6 +19,7 @@ const PDFViewer = dynamic(() => import('@/components/PDFViewer'), {
 });
 
 const CVPage = () => {
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-background">
@@ -29,17 +31,17 @@ const CVPage = () => {
               href="/" 
               className="text-primary hover:text-primary/80 font-medium transition-colors"
             >
-              ← Quay lại Portfolio
+              {t('cv.backToPortfolio')}
             </Link>
             <h1 className="text-xl font-semibold text-foreground">
-              CV - Pham Thanh Truong
+              {t('cv.title')}
             </h1>
             <a
               href="/assets/cv.pdf"
               download="Pham-Thanh-Truong-CV.pdf"
               className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
             >
-              Tải CV
+              {t('cv.downloadCV')}
             </a>
           </div>
         </div>

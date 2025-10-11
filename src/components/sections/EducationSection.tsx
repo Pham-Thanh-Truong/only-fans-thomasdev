@@ -33,11 +33,7 @@ const EducationSection = () => {
       school: "Đại học Công nghệ Thông tin và Truyền Thông Việt - Hàn ",
       period: "2020 - 2025",
       location: "Đà Nẵng, Việt Nam",
-      description: "Chuyên ngành Công nghệ Thông tin với focus vào phát triển phần mềm và hệ thống thông tin.",
-      achievements: [
-        "GPA: 3.2/4.0",
-        "Tham gia các dự án thực tế về web development",
-      ]
+      description: "Chuyên ngành Công nghệ Thông tin kỹ thuật phần mềm với focus vào phát triển phần mềm và hệ thống thông tin."
     }
   ];
 
@@ -101,78 +97,55 @@ const EducationSection = () => {
                   </div>
 
                   {/* Achievements */}
-                  <div>
-                    <h5 className="text-sm font-semibold text-foreground mb-2">Thành tích:</h5>
-                    <ul className="space-y-1">
-                      {edu.achievements.map((achievement, achIndex) => (
-                        <li key={achIndex} className="text-sm text-muted-foreground flex items-start">
-                          <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {/*<div>*/}
+                  {/*  <h5 className="text-sm font-semibold text-foreground mb-2">Thành tích:</h5>*/}
+                  {/*  <ul className="space-y-1">*/}
+                  {/*    {edu.achievements.map((achievement, achIndex) => (*/}
+                  {/*      <li key={achIndex} className="text-sm text-muted-foreground flex items-start">*/}
+                  {/*        <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>*/}
+                  {/*        {achievement}*/}
+                  {/*      </li>*/}
+                  {/*    ))}*/}
+                  {/*  </ul>*/}
+                  {/*</div>*/}
                 </div>
               ))}
             </div>
           </div>
 
           {/* Certifications */}
-          <div>
-            <h3 className="text-2xl font-semibold text-foreground mb-8 text-center">
-              Chứng Chỉ & Khóa Học
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certifications.map((cert, index) => (
-                <div key={index} className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-foreground mb-1">
-                        {cert.name}
-                      </h4>
-                      <div className="text-primary text-sm font-medium mb-1">
-                        {cert.issuer}
-                      </div>
-                      <div className="text-muted-foreground text-xs mb-2">
-                        {cert.date}
-                      </div>
-                      <p className="text-muted-foreground text-sm">
-                        {cert.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Learning Philosophy */}
-          <div className="mt-16 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-lg p-8">
-            <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
-              Triết Lý Học Tập
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="text-lg font-semibold text-foreground mb-3">Học tập liên tục</h4>
-                <p className="text-muted-foreground">
-                  Tôi tin rằng trong lĩnh vực công nghệ, việc học tập không bao giờ dừng lại. 
-                  Mỗi ngày tôi đều tìm hiểu về những công nghệ mới và cải thiện kỹ năng hiện tại.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-foreground mb-3">Thực hành thực tế</h4>
-                <p className="text-muted-foreground">
-                  Lý thuyết phải đi đôi với thực hành. Tôi luôn tìm cách áp dụng những gì học được 
-                  vào các dự án thực tế để nâng cao kinh nghiệm và kỹ năng.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/*<div>*/}
+          {/*  <h3 className="text-2xl font-semibold text-foreground mb-8 text-center">*/}
+          {/*    Chứng Chỉ & Khóa Học*/}
+          {/*  </h3>*/}
+          {/*  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">*/}
+          {/*    {certifications.map((cert, index) => (*/}
+          {/*      <div key={index} className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow">*/}
+          {/*        <div className="flex items-start space-x-4">*/}
+          {/*          <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">*/}
+          {/*            <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
+          {/*              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />*/}
+          {/*            </svg>*/}
+          {/*          </div>*/}
+          {/*          <div className="flex-1">*/}
+          {/*            <h4 className="font-semibold text-foreground mb-1">*/}
+          {/*              {cert.name}*/}
+          {/*            </h4>*/}
+          {/*            <div className="text-primary text-sm font-medium mb-1">*/}
+          {/*              {cert.issuer}*/}
+          {/*            </div>*/}
+          {/*            <div className="text-muted-foreground text-xs mb-2">*/}
+          {/*              {cert.date}*/}
+          {/*            </div>*/}
+          {/*            <p className="text-muted-foreground text-sm">*/}
+          {/*              {cert.description}*/}
+          {/*            </p>*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    ))}*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </div>
     </section>

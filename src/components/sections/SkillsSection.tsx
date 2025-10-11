@@ -128,57 +128,57 @@ const SkillsSection = () => {
           </div>
 
           {/* Certifications/Achievements */}
-          <div className="mt-12 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-lg p-8">
-            <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
-              Thành Tựu & Chứng Chỉ
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Frontend Development</h4>
-                  <p className="text-muted-foreground text-sm">Chuyên gia React & Next.js</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Mobile Development</h4>
-                  <p className="text-muted-foreground text-sm">React Native Expert</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Full-Stack Development</h4>
-                  <p className="text-muted-foreground text-sm">Laravel & Node.js</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Performance Optimization</h4>
-                  <p className="text-muted-foreground text-sm">High-performance applications</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/*<div className="mt-12 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-lg p-8">*/}
+          {/*  <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">*/}
+          {/*    Thành Tựu & Chứng Chỉ*/}
+          {/*  </h3>*/}
+          {/*  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">*/}
+          {/*    <div className="flex items-center space-x-4">*/}
+          {/*      <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">*/}
+          {/*        <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
+          {/*          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />*/}
+          {/*        </svg>*/}
+          {/*      </div>*/}
+          {/*      <div>*/}
+          {/*        <h4 className="font-semibold text-foreground">Frontend Development</h4>*/}
+          {/*        <p className="text-muted-foreground text-sm">Chuyên gia React & Next.js</p>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="flex items-center space-x-4">*/}
+          {/*      <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">*/}
+          {/*        <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
+          {/*          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />*/}
+          {/*        </svg>*/}
+          {/*      </div>*/}
+          {/*      <div>*/}
+          {/*        <h4 className="font-semibold text-foreground">Mobile Development</h4>*/}
+          {/*        <p className="text-muted-foreground text-sm">React Native Expert</p>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="flex items-center space-x-4">*/}
+          {/*      <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">*/}
+          {/*        <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
+          {/*          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />*/}
+          {/*        </svg>*/}
+          {/*      </div>*/}
+          {/*      <div>*/}
+          {/*        <h4 className="font-semibold text-foreground">Full-Stack Development</h4>*/}
+          {/*        <p className="text-muted-foreground text-sm">Laravel & Node.js</p>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="flex items-center space-x-4">*/}
+          {/*      <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">*/}
+          {/*        <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
+          {/*          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />*/}
+          {/*        </svg>*/}
+          {/*      </div>*/}
+          {/*      <div>*/}
+          {/*        <h4 className="font-semibold text-foreground">Performance Optimization</h4>*/}
+          {/*        <p className="text-muted-foreground text-sm">High-performance applications</p>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </div>
     </section>

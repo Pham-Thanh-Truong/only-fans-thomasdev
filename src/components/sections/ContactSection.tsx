@@ -46,13 +46,13 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
+
       // Reset status after 3 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
@@ -104,15 +104,15 @@ const ContactSection = () => {
         </svg>
       )
     },
-    {
-      name: "Portfolio",
-      url: "https://thanhtruongdn.netlify.app/",
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
-      )
-    }
+    // {
+    //   name: "Portfolio",
+    //   url: "https://onlyfansthomasdev.netlify.app/",
+    //   icon: (
+    //     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    //     </svg>
+    //   )
+    // }
   ];
 
   return (
@@ -136,7 +136,7 @@ const ContactSection = () => {
                   Thông tin liên hệ
                 </h3>
                 <p className="text-muted-foreground mb-8">
-                  Tôi luôn sẵn sàng lắng nghe và thảo luận về các dự án thú vị. 
+                  Tôi luôn sẵn sàng lắng nghe và thảo luận về các dự án thú vị.
                   Hãy liên hệ với tôi qua bất kỳ phương thức nào dưới đây.
                 </p>
               </div>
@@ -185,7 +185,7 @@ const ContactSection = () => {
               <h3 className="text-2xl font-semibold text-foreground mb-6">
                 Gửi tin nhắn
               </h3>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>

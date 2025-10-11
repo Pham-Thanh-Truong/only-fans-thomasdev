@@ -7,7 +7,13 @@ const nextConfig: NextConfig = {
   // Optimize images
   images: {
     domains: [],
-    unoptimized: false, // Let Netlify handle optimization
+    unoptimized: true, // Disable optimization for Netlify compatibility
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   // Netlify specific optimizations
   trailingSlash: false,

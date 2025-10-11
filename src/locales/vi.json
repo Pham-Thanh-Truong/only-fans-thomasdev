@@ -1,0 +1,172 @@
+{
+  "navigation": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "experience": "Kinh nghiệm",
+    "skills": "Kỹ năng",
+    "education": "Học vấn",
+    "contact": "Liên hệ",
+    "cv": "CV của tôi"
+  },
+  "home": {
+    "title": "Pham Thanh Truong",
+    "subtitle": "Software Developer",
+    "description": "Chào mừng đến với portfolio của tôi!",
+    "techStack": "Công nghệ sử dụng",
+    "contactMe": "Liên hệ với tôi",
+    "viewExperience": "Xem kinh nghiệm",
+    "viewCV": "Xem CV"
+  },
+  "about": {
+    "title": "Giới thiệu",
+    "subtitle": "Về tôi",
+    "description": "Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile sử dụng React, React Native, và Next.js. Có kỹ năng xây dựng giao diện người dùng phản hồi, hiệu suất cao và kinh nghiệm tích hợp hệ thống VoIP SIP. Đam mê viết mã sạch, dễ bảo trì và liên tục cải thiện chất lượng sản phẩm.",
+    "experience": "Kinh nghiệm",
+    "years": "năm",
+    "projects": "Dự án",
+    "clients": "Khách hàng",
+    "technologies": "Công nghệ"
+  },
+  "experience": {
+    "title": "Kinh nghiệm làm việc",
+    "subtitle": "Hành trình nghề nghiệp",
+    "mudbathNextjs": {
+      "title": "Mudbath - Next.js Developer",
+      "period": "Tháng 5 2024 - Tháng 7 2024 | New South Wales, Australia",
+      "project": "Dự án: MYO",
+      "tech": "Công nghệ: TS, MUI, Contentful, Cloudflare, LearnWorlds, BigCommerce, CloudFlare",
+      "cicd": "CI/CD: AWS",
+      "achievements": [
+        "Triển khai các component frontend pixel-perfect",
+        "Tích hợp nội dung động với Contentful CMS",
+        "Hợp tác với team thiết kế và marketing"
+      ]
+    },
+    "mudbathReactNative": {
+      "title": "Mudbath - React Native Developer",
+      "period": "Tháng 2 2024 - Tháng 5 2024 | New South Wales, Australia",
+      "project": "Dự án: Milieulabs",
+      "tech": "Công nghệ: TS, ReactJs, Serverless, AWS IOT Core, AWS Lambda Function, AWS API Gateway, AWS DynamoDB, AWS Cognito",
+      "cicd": "CI/CD: AWS",
+      "achievements": [
+        "Migration UI từ Aurelia sang ReactJs",
+        "Cập nhật API endpoint và lambda function"
+      ]
+    },
+    "mudbathLaravel": {
+      "title": "Mudbath - Laravel Developer",
+      "period": "Tháng 9 2023 - Tháng 2 2024 | New South Wales, Australia",
+      "project": "Dự án: Landers & Rogers",
+      "tech": "Công nghệ: PHP, JS, VueJs, Contentful, Algolia",
+      "cicd": "CI/CD: Docker, Azure",
+      "achievements": [
+        "Migration từ Laravel 7 lên 9 & Contentful version",
+        "Giải quyết Docker pipeline và các vấn đề Docker, xử lý các vấn đề bảo mật, và sửa lỗi sitemap",
+        "Điều chỉnh UI sau migration"
+      ]
+    },
+    "mudbathETL": {
+      "title": "Mudbath - ETL Developer",
+      "period": "Tháng 10 2023 - Tháng 11 2023 | New South Wales, Australia",
+      "project": "Dự án: DSI mobile app (Ground Support)",
+      "tech": "Công nghệ: TS, React Native, Redux, Redux Thunk, Azure Functions, Contentful",
+      "cicd": "CI/CD: AppVeyor",
+      "achievements": [
+        "Cấu hình và quản lý Contentful webhooks để kích hoạt Azure Functions tạo ra các file JSON chứa view models được tùy chỉnh cho các ngôn ngữ khác nhau.",
+        "Tối ưu hóa hiệu suất của các ETL functions để đảm bảo việc cung cấp nội dung địa phương hóa hiệu quả và kịp thời cho người dùng cuối."
+      ]
+    }
+  },
+  "skills": {
+    "title": "Kỹ năng",
+    "subtitle": "Công nghệ và công cụ",
+    "frameworks": "Framework / Platforms",
+    "languages": "Ngôn ngữ lập trình",
+    "tools": "Công cụ và công nghệ"
+  },
+  "education": {
+    "title": "Học vấn & Chứng chỉ",
+    "subtitle": "Hành trình học tập và các chứng chỉ đã đạt được",
+    "education": "Học vấn",
+    "degree": "Kỹ sư Công nghệ Thông tin",
+    "school": "Đại học Công nghệ Thông tin và Truyền Thông Việt - Hàn",
+    "period": "2020 - 2025",
+    "location": "Đà Nẵng, Việt Nam",
+    "description": "Chuyên ngành Công nghệ Thông tin với focus vào phát triển phần mềm và hệ thống thông tin.",
+    "achievements": "Thành tích:",
+    "gpa": "GPA: 3.2/4.0",
+    "projects": "Tham gia các dự án thực tế về web development",
+    "certifications": "Chứng Chỉ & Khóa Học",
+    "reactCert": {
+      "name": "React Developer Certification",
+      "issuer": "Meta",
+      "date": "2023",
+      "description": "Chứng chỉ phát triển ứng dụng React từ Meta"
+    },
+    "awsCert": {
+      "name": "AWS Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "description": "Chứng chỉ cơ bản về AWS Cloud"
+    },
+    "tsCert": {
+      "name": "TypeScript Fundamentals",
+      "issuer": "Microsoft",
+      "date": "2022",
+      "description": "Khóa học cơ bản về TypeScript"
+    },
+    "philosophy": "Triết Lý Học Tập",
+    "continuousLearning": "Học tập liên tục",
+    "continuousLearningDesc": "Tôi tin rằng trong lĩnh vực công nghệ, việc học tập không bao giờ dừng lại. Mỗi ngày tôi đều tìm hiểu về những công nghệ mới và cải thiện kỹ năng hiện tại.",
+    "practicalApplication": "Thực hành thực tế",
+    "practicalApplicationDesc": "Lý thuyết phải đi đôi với thực hành. Tôi luôn tìm cách áp dụng những gì học được vào các dự án thực tế để nâng cao kinh nghiệm và kỹ năng."
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "subtitle": "Hãy liên hệ với tôi",
+    "description": "Cảm ơn bạn đã ghé thăm portfolio của tôi! Tôi luôn sẵn sàng thảo luận về các cơ hội hợp tác, dự án mới, hoặc bất kỳ câu hỏi nào bạn có thể có.",
+    "getInTouch": "Liên hệ với tôi",
+    "email": "Email",
+    "phone": "Điện thoại",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "location": "Địa điểm",
+    "locationValue": "Đà Nẵng, Việt Nam",
+    "availability": "Tình trạng",
+    "availabilityValue": "Sẵn sàng cho các cơ hội mới",
+    "responseTime": "Thời gian phản hồi",
+    "responseTimeValue": "Trong vòng 24 giờ",
+    "preferredContact": "Cách liên hệ ưa thích",
+    "preferredContactValue": "Email hoặc LinkedIn",
+    "thankYou": "Cảm ơn bạn đã ghé thăm!",
+    "lookingForward": "Tôi mong được nghe từ bạn sớm."
+  },
+  "cv": {
+    "title": "CV - Pham Thanh Truong",
+    "backToPortfolio": "← Quay lại Portfolio",
+    "downloadCV": "Tải CV",
+    "loading": "Đang tải PDF viewer...",
+    "error": "Không thể tải CV. Vui lòng thử tải xuống để xem.",
+    "downloadPDF": "Tải CV (PDF)",
+    "navigation": "Hướng dẫn xem CV",
+    "navigationGuide": "Điều hướng:",
+    "navigationTips": [
+      "Sử dụng nút \"Trước/Sau\" để chuyển trang",
+      "Scroll để phóng to/thu nhỏ",
+      "Click và kéo để di chuyển"
+    ],
+    "downloadGuide": "Tải xuống:",
+    "downloadDesc": "Nếu bạn muốn lưu CV về máy hoặc xem offline:",
+    "previous": "← Trước",
+    "next": "Sau →",
+    "page": "Trang",
+    "of": "/"
+  },
+  "footer": {
+    "rights": "Tất cả quyền được bảo lưu.",
+    "builtWith": "Được xây dựng với Next.js và Tailwind CSS.",
+    "quickLinks": "Liên kết nhanh",
+    "contactInfo": "Thông tin liên hệ",
+    "followMe": "Theo dõi tôi"
+  }
+}

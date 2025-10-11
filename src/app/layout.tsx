@@ -15,23 +15,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pham Thanh Truong - Front-End Developer",
-  description: "Front-End Developer với 3 năm kinh nghiệm trong phát triển web và mobile sử dụng React, React Native, và Next.js.",
-  keywords: "Front-End Developer, React, React Native, Next.js, TypeScript, JavaScript, Web Development",
+  title: "Pham Thanh Truong - Software Developer",
+  description: "Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile sử dụng React, React Native, và Next.js.",
+  keywords: "Software Developer, React, React Native, Next.js, TypeScript, JavaScript, Web Development",
   authors: [{ name: "Pham Thanh Truong" }],
   creator: "Pham Thanh Truong",
   openGraph: {
     type: "website",
     locale: "vi_VN",
-    url: "https://thanhtruongdn.netlify.app/",
-    title: "Pham Thanh Truong - Front-End Developer",
-    description: "Front-End Developer với 3 năm kinh nghiệm trong phát triển web và mobile",
+    url: "https://onlyfansthomasdev.netlify.app/",
+    title: "Pham Thanh Truong - Software Developer",
+    description: "Sofware Developer với 3 năm kinh nghiệm trong phát triển web và mobile",
     siteName: "Pham Thanh Truong Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pham Thanh Truong - Front-End Developer",
-    description: "Front-End Developer với 3 năm kinh nghiệm trong phát triển web và mobile",
+    title: "Pham Thanh Truong - Software Developer",
+    description: "Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile",
   },
 };
 

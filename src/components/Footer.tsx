@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-foreground">Pham Thanh Truong</h3>
             <p className="text-muted-foreground text-sm">
-              Front-End Developer với 3 năm kinh nghiệm trong phát triển web và mobile 
+              Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile 
               sử dụng React, React Native, và Next.js.
             </p>
           </div>
@@ -72,7 +72,7 @@ const Footer = () => {
                   </svg>
                 </Link>
                 <Link 
-                  href="https://thanhtruongdn.netlify.app/" 
+                  href="https://onlyfansthomasdev.netlify.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"

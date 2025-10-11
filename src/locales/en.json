@@ -1,0 +1,172 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "contact": "Contact",
+    "cv": "My CV"
+  },
+  "home": {
+    "title": "Pham Thanh Truong",
+    "subtitle": "Software Developer",
+    "description": "Welcome to my portfolio!",
+    "techStack": "Tech Stack",
+    "contactMe": "Contact Me",
+    "viewExperience": "View Experience",
+    "viewCV": "View CV"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Get to know me",
+    "description": "Software Developer with 3 years of experience in web and mobile development using React, React Native, and Next.js. Skilled in building responsive, high-performance user interfaces and experienced in VoIP SIP system integration. Passionate about writing clean, maintainable code and continuously improving product quality.",
+    "experience": "Experience",
+    "years": "years",
+    "projects": "Projects",
+    "clients": "Clients",
+    "technologies": "Technologies"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "subtitle": "Professional Journey",
+    "mudbathNextjs": {
+      "title": "Mudbath - Next.js Developer",
+      "period": "May 2024 - July 2024 | New South Wales, Australia",
+      "project": "Project: MYO",
+      "tech": "Tech: TS, MUI, Contentful, Cloudflare, LearnWorlds, BigCommerce, CloudFlare",
+      "cicd": "CI/CD: AWS",
+      "achievements": [
+        "Implemented pixel-perfect frontend components",
+        "Integrated dynamic content with Contentful CMS",
+        "Collaborated with design and marketing teams"
+      ]
+    },
+    "mudbathReactNative": {
+      "title": "Mudbath - React Native Developer",
+      "period": "Feb 2024 - May 2024 | New South Wales, Australia",
+      "project": "Project: Milieulabs",
+      "tech": "Tech: TS, ReactJs, Serverless, AWS IOT Core, AWS Lambda Function, AWS API Gateway, AWS DynamoDB, AWS Cognito",
+      "cicd": "CI/CD: AWS",
+      "achievements": [
+        "Migrate UI from Aurelia to ReactJs",
+        "Update API endpoint and lambda function"
+      ]
+    },
+    "mudbathLaravel": {
+      "title": "Mudbath - Laravel Developer",
+      "period": "Sep 2023 - Feb 2024 | New South Wales, Australia",
+      "project": "Project: Landers & Rogers",
+      "tech": "Tech: PHP, JS, VueJs, Contentful, Algolia",
+      "cicd": "CI/CD: Docker, Azure",
+      "achievements": [
+        "Migration from Laravel 7 to 9 & Contentful version",
+        "Resolve Docker pipeline and Docker problems, address cybersecurity issues, and fix sitemap issues",
+        "Adjust UI post-migration"
+      ]
+    },
+    "mudbathETL": {
+      "title": "Mudbath - ETL Developer",
+      "period": "Oct 2023 - Nov 2023 | New South Wales, Australia",
+      "project": "Project: DSI mobile app (Ground Support)",
+      "tech": "Tech: TS, React Native, Redux, Redux Thunk, Azure Functions, Contentful",
+      "cicd": "CI/CD: AppVeyor",
+      "achievements": [
+        "Configured and managed Contentful webhooks for triggering Azure Functions that generate JSON files containing view models customized for different languages.",
+        "Optimized the performance of ETL functions to ensure the efficient and timely delivery of localized content to end-users."
+      ]
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and Tools",
+    "frameworks": "Framework / Platforms",
+    "languages": "Programming Languages",
+    "tools": "Tools and Technologies"
+  },
+  "education": {
+    "title": "Education & Certifications",
+    "subtitle": "Learning journey and achieved certifications",
+    "education": "Education",
+    "degree": "Bachelor of Information Technology",
+    "school": "Vietnam - Korea University of Information and Communication Technology",
+    "period": "2020 - 2025",
+    "location": "Da Nang, Vietnam",
+    "description": "Information Technology major with focus on software development and information systems.",
+    "achievements": "Achievements:",
+    "gpa": "GPA: 3.2/4.0",
+    "projects": "Participated in real-world web development projects",
+    "certifications": "Certifications & Courses",
+    "reactCert": {
+      "name": "React Developer Certification",
+      "issuer": "Meta",
+      "date": "2023",
+      "description": "React application development certification from Meta"
+    },
+    "awsCert": {
+      "name": "AWS Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "description": "Basic AWS Cloud certification"
+    },
+    "tsCert": {
+      "name": "TypeScript Fundamentals",
+      "issuer": "Microsoft",
+      "date": "2022",
+      "description": "Basic TypeScript course"
+    },
+    "philosophy": "Learning Philosophy",
+    "continuousLearning": "Continuous Learning",
+    "continuousLearningDesc": "I believe that in the technology field, learning never stops. Every day I explore new technologies and improve current skills.",
+    "practicalApplication": "Practical Application",
+    "practicalApplicationDesc": "Theory must go hand in hand with practice. I always find ways to apply what I learn to real projects to enhance experience and skills."
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Get in touch",
+    "description": "Thank you for visiting my portfolio! I'm always ready to discuss collaboration opportunities, new projects, or any questions you might have.",
+    "getInTouch": "Get in Touch",
+    "email": "Email",
+    "phone": "Phone",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "location": "Location",
+    "locationValue": "Da Nang, Vietnam",
+    "availability": "Availability",
+    "availabilityValue": "Open to new opportunities",
+    "responseTime": "Response Time",
+    "responseTimeValue": "Within 24 hours",
+    "preferredContact": "Preferred Contact",
+    "preferredContactValue": "Email or LinkedIn",
+    "thankYou": "Thank you for visiting!",
+    "lookingForward": "I look forward to hearing from you soon."
+  },
+  "cv": {
+    "title": "CV - Pham Thanh Truong",
+    "backToPortfolio": "← Back to Portfolio",
+    "downloadCV": "Download CV",
+    "loading": "Loading PDF viewer...",
+    "error": "Unable to load CV. Please try downloading to view.",
+    "downloadPDF": "Download CV (PDF)",
+    "navigation": "CV Viewing Guide",
+    "navigationGuide": "Navigation:",
+    "navigationTips": [
+      "Use \"Previous/Next\" buttons to navigate pages",
+      "Scroll to zoom in/out",
+      "Click and drag to move"
+    ],
+    "downloadGuide": "Download:",
+    "downloadDesc": "If you want to save the CV to your device or view offline:",
+    "previous": "← Previous",
+    "next": "Next →",
+    "page": "Page",
+    "of": "/"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js and Tailwind CSS.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "followMe": "Follow Me"
+  }
+}

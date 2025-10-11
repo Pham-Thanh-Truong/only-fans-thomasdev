@@ -47,7 +47,7 @@ const AboutSection = () => {
                 Chào mừng đến với portfolio của tôi!
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Tôi là Pham Thanh Truong, một Front-End Developer đam mê với 3 năm kinh nghiệm 
+                Tôi là Pham Thanh Truong, một Software Developer đam mê với 3 năm kinh nghiệm 
                 trong việc phát triển các ứng dụng web và mobile hiện đại. Tôi chuyên về việc 
                 tạo ra những giao diện người dùng đẹp mắt, responsive và có hiệu suất cao.
               </p>

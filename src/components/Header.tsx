@@ -2,18 +2,21 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import useTranslation from '@/hooks/useTranslation';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const navigation = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Me', href: '#about' },
-    { name: 'Work Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Education', href: '#education' },
-    { name: 'Contact Me', href: '#contact' },
-    { name: 'My CV', href: '/cv' },
+    { name: t('navigation.home'), href: '#home' },
+    { name: t('navigation.about'), href: '#about' },
+    { name: t('navigation.experience'), href: '#experience' },
+    { name: t('navigation.skills'), href: '#skills' },
+    { name: t('navigation.education'), href: '#education' },
+    { name: t('navigation.contact'), href: '#contact' },
+    { name: t('navigation.cv'), href: '/cv' },
   ];
 
   return (
@@ -45,11 +48,13 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              <LanguageSwitcher />
             </div>
           </nav>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu button and language switcher */}
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageSwitcher />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-primary hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"

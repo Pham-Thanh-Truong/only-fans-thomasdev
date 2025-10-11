@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Keep default Next.js build behavior
+  compress: true,
+  poweredByHeader: false,
+  // Optimize images
+  images: {
+    domains: [],
+  },
 };
 
 export default nextConfig;

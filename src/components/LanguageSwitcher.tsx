@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import useTranslation from '@/hooks/useTranslation';
+import { useTranslationContext } from './TranslationProvider';
 
 const LanguageSwitcher = () => {
-  const { locale, changeLanguage } = useTranslation();
+  const { locale, changeLanguage, isLoading } = useTranslationContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const languages = [
@@ -18,19 +18,24 @@ const LanguageSwitcher = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors"
+        disabled={isLoading}
+        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label="Change language"
       >
         <span className="text-lg">{currentLanguage.flag}</span>
         <span className="text-sm font-medium">{currentLanguage.name}</span>
-        <svg
-          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        {isLoading ? (
+          <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+        ) : (
+          <svg
+            className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        )}
       </button>
 
       {isOpen && (

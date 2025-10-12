@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslationContext } from '../TranslationProvider';
 
 const EducationSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslationContext();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,10 +65,10 @@ const EducationSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Học Vấn & Chứng Chỉ
+            {t('education.title')}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Hành trình học tập và các chứng chỉ đã đạt được
+            {t('education.subtitle')}
           </p>
         </div>
 
@@ -74,7 +76,7 @@ const EducationSection = () => {
           {/* Education */}
           <div className="mb-16">
             <h3 className="text-2xl font-semibold text-foreground mb-8 text-center">
-              Học Vấn
+              {t('education.education')}
             </h3>
             <div className="space-y-8">
               {education.map((edu, index) => (

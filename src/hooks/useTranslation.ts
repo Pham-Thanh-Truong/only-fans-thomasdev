@@ -160,22 +160,47 @@ type TranslationKeys = {
 const useTranslation = () => {
   const [translations, setTranslations] = useState<TranslationKeys | null>(null);
   const [locale, setLocale] = useState<string>('vi');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Get locale from localStorage or default to 'vi'
+    // Check if we're on client side
+    if (typeof window === 'undefined') {
+      // Server-side: load default translations
+      const loadDefaultTranslations = async () => {
+        try {
+          const translationModule = await import('../locales/vi.json');
+          setTranslations(translationModule.default);
+          setIsLoading(false);
+        } catch (error) {
+          console.error('Error loading default translations:', error);
+          setIsLoading(false);
+        }
+      };
+      loadDefaultTranslations();
+      return;
+    }
+
+    // Client-side: get locale from localStorage
     const savedLocale = localStorage.getItem('locale') || 'vi';
     setLocale(savedLocale);
     
     // Load translations
     const loadTranslations = async () => {
       try {
+        setIsLoading(true);
         const translationModule = await import(`../locales/${savedLocale}.json`);
         setTranslations(translationModule.default);
       } catch (error) {
         console.error('Error loading translations:', error);
         // Fallback to Vietnamese
-        const fallbackModule = await import('../locales/vi.json');
-        setTranslations(fallbackModule.default);
+        try {
+          const fallbackModule = await import('../locales/vi.json');
+          setTranslations(fallbackModule.default);
+        } catch (fallbackError) {
+          console.error('Error loading fallback translations:', fallbackError);
+        }
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -200,19 +225,28 @@ const useTranslation = () => {
   };
 
   const changeLanguage = (newLocale: string) => {
+    if (typeof window === 'undefined') return;
+    
     localStorage.setItem('locale', newLocale);
     setLocale(newLocale);
     
     // Reload translations
     const loadTranslations = async () => {
       try {
+        setIsLoading(true);
         const translationModule = await import(`../locales/${newLocale}.json`);
         setTranslations(translationModule.default);
       } catch (error) {
         console.error('Error loading translations:', error);
         // Fallback to Vietnamese
-        const fallbackModule = await import('../locales/vi.json');
-        setTranslations(fallbackModule.default);
+        try {
+          const fallbackModule = await import('../locales/vi.json');
+          setTranslations(fallbackModule.default);
+        } catch (fallbackError) {
+          console.error('Error loading fallback translations:', fallbackError);
+        }
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -223,7 +257,8 @@ const useTranslation = () => {
     t,
     locale,
     changeLanguage,
-    translations
+    translations,
+    isLoading
   };
 };
 

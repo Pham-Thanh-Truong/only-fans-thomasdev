@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslationContext } from '../TranslationProvider';
 
 const ExperienceSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslationContext();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -90,10 +92,10 @@ const ExperienceSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Kinh Nghiệm Làm Việc
+            {t('experience.title')}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Hành trình phát triển nghề nghiệp và các dự án đã tham gia
+            {t('experience.subtitle')}
           </p>
         </div>
 

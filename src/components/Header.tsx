@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import useTranslation from '@/hooks/useTranslation';
+import { useTranslationContext } from './TranslationProvider';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslationContext();
 
   const navigation = [
     { name: t('navigation.home'), href: '#home' },

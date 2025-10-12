@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslationContext } from '../TranslationProvider';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslationContext();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,10 +34,10 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Về Tôi
+            {t('about.title')}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Tìm hiểu thêm về hành trình phát triển và đam mê của tôi trong lĩnh vực công nghệ
+            {t('about.subtitle')}
           </p>
         </div>
 
@@ -43,24 +45,8 @@ const AboutSection = () => {
           {/* Content */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-semibold text-foreground mb-4">
-                Chào mừng đến với portfolio của tôi!
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Tôi là Pham Thanh Truong, một Software Developer đam mê với 3 năm kinh nghiệm 
-                trong việc phát triển các ứng dụng web và mobile hiện đại. Tôi chuyên về việc 
-                tạo ra những giao diện người dùng đẹp mắt, responsive và có hiệu suất cao.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Với kinh nghiệm làm việc tại Mudbath, tôi đã có cơ hội tham gia vào nhiều dự án 
-                thú vị, từ việc phát triển ứng dụng web với Next.js đến việc xây dựng ứng dụng 
-                mobile với React Native. Tôi cũng có kinh nghiệm với các công nghệ backend như 
-                Laravel và Node.js.
-              </p>
               <p className="text-muted-foreground leading-relaxed">
-                Tôi luôn tìm kiếm những thách thức mới và cơ hội để học hỏi những công nghệ 
-                mới nhất. Mục tiêu của tôi là tạo ra những sản phẩm chất lượng cao, mang lại 
-                trải nghiệm tuyệt vời cho người dùng.
+                {t('about.description')}
               </p>
             </div>
 

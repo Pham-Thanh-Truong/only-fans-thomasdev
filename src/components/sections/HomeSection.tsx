@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import useTranslation from '@/hooks/useTranslation';
+import { useTranslationContext } from '../TranslationProvider';
 
 const HomeSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslationContext();
 
   useEffect(() => {
     setIsVisible(true);
@@ -38,9 +38,6 @@ const HomeSection = () => {
             <h2 className="text-xl md:text-2xl text-primary mb-4 font-semibold">
               {t('home.subtitle')}
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              {t('home.description')}
-            </p>
 
             {/* Tech Stack */}
             <div className="mb-4">

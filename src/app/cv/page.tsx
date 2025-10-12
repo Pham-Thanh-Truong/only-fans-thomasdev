@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import useTranslation from '@/hooks/useTranslation';
+import { useTranslationContext } from '@/components/TranslationProvider';
 
 // Dynamic import PDFViewer to avoid SSR issues
 const PDFViewer = dynamic(() => import('@/components/PDFViewer'), {
@@ -19,7 +19,7 @@ const PDFViewer = dynamic(() => import('@/components/PDFViewer'), {
 });
 
 const CVPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslationContext();
 
   return (
     <div className="min-h-screen bg-background">

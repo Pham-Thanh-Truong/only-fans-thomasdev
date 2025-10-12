@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslationContext } from '../TranslationProvider';
 
 const SkillsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslationContext();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,10 +66,10 @@ const SkillsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Kỹ Năng
+            {t('skills.title')}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Các công nghệ và kỹ năng mà tôi đã tích lũy qua quá trình làm việc
+            {t('skills.subtitle')}
           </p>
         </div>
 

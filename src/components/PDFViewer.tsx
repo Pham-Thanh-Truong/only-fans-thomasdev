@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import useTranslation from '@/hooks/useTranslation';
+import { useTranslationContext } from './TranslationProvider';
 
 // Set up PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
@@ -16,7 +16,7 @@ const PDFViewer = ({ file }: PDFViewerProps) => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { t } = useTranslation();
+  const { t } = useTranslationContext();
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);

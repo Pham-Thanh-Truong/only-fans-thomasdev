@@ -147,6 +147,8 @@
     "fullNamePlaceholder": "Nhập họ và tên",
     "emailPlaceholder": "Nhập email",
     "subject": "Chủ đề",
+    "message": "Tin nhắn",
+    "send": "Gửi",
     "subjectPlaceholder": "Nhập chủ đề",
     "messagePlaceholder": "Nhập tin nhắn của bạn...",
     "sending": "Đang gửi...",

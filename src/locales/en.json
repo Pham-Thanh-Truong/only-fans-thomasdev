@@ -147,6 +147,8 @@
     "fullNamePlaceholder": "Enter your full name",
     "emailPlaceholder": "Enter your email",
     "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
     "subjectPlaceholder": "Enter subject",
     "messagePlaceholder": "Enter your message...",
     "sending": "Sending...",

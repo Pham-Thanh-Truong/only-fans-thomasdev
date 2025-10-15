@@ -1,7 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { RecaptchaEnterpriseServiceClient } from '@google-cloud/recaptcha-enterprise';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 'dummy-key-for-build');
+
+/**
+ * Create an assessment to analyze the risk of a UI action.
+ * Based on Google Cloud reCAPTCHA Enterprise documentation
+ */
+async function createAssessment({
+  projectID = process.env.GOOGLE_CLOUD_PROJECT_ID || "my-project-onlyfans",
+  recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6Lc9GOsrAAAAAIK48eUomlAPBW96z99GCupAotrf",
+  token = "action-token",
+  recaptchaAction = "CONTACT_FORM",
+}) {
+  // Create the reCAPTCHA client
+  const client = new RecaptchaEnterpriseServiceClient();
+  const projectPath = client.projectPath(projectID);
+
+  // Build the assessment request
+  const request = {
+    assessment: {
+      event: {
+        token: token,
+        siteKey: recaptchaKey,
+      },
+    },
+    parent: projectPath,
+  };
+
+  const [response] = await client.createAssessment(request);
+
+  // Check if the token is valid
+  if (!response.tokenProperties?.valid) {
+    console.log(`The CreateAssessment call failed because the token was: ${response.tokenProperties?.invalidReason}`);
+    return null;
+  }
+
+  // Check if the expected action was executed
+  if (response.tokenProperties?.action === recaptchaAction) {
+    // Get the risk score and the reason(s)
+    console.log(`The reCAPTCHA score is: ${response.riskAnalysis?.score}`);
+    if (response.riskAnalysis?.reasons) {
+      response.riskAnalysis.reasons.forEach((reason) => {
+        console.log(reason);
+      });
+    }
+
+    return response.riskAnalysis?.score;
+  } else {
+    console.log("The action attribute in your reCAPTCHA tag does not match the action you are expecting to score");
+    return null;
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -32,22 +83,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Verify reCAPTCHA with Google
-    const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        secret: process.env.RECAPTCHA_SECRET_KEY || '',
-        response: recaptchaToken,
-        remoteip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || '',
-      }),
-    });
+    // Verify reCAPTCHA Enterprise using Google Cloud client
+    try {
+      const riskScore = await createAssessment({
+        projectID: process.env.GOOGLE_CLOUD_PROJECT_ID,
+        recaptchaKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        token: recaptchaToken,
+        recaptchaAction: "CONTACT_FORM",
+      });
 
-    const recaptchaResult = await recaptchaResponse.json();
-    
-    if (!recaptchaResult.success) {
+      if (riskScore === null) {
+        return NextResponse.json(
+          { error: 'reCAPTCHA verification failed' },
+          { status: 400 }
+        );
+      }
+
+      // Optional: Check risk score threshold (0.0 to 1.0, higher is better)
+      if (riskScore !== undefined && riskScore < 0.5) {
+        console.log(`reCAPTCHA risk score too low: ${riskScore}`);
+        return NextResponse.json(
+          { error: 'reCAPTCHA verification failed - low risk score' },
+          { status: 400 }
+        );
+      }
+
+      console.log(`reCAPTCHA verification successful with score: ${riskScore}`);
+    } catch (recaptchaError) {
+      console.error('reCAPTCHA Enterprise error:', recaptchaError);
       return NextResponse.json(
         { error: 'reCAPTCHA verification failed' },
         { status: 400 }

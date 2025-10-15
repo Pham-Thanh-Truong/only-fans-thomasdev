@@ -1,8 +1,19 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslationContext } from '../TranslationProvider';
-import ReCAPTCHA from 'react-google-recaptcha';
+
+// Type definition for reCAPTCHA Enterprise
+interface GrecaptchaEnterprise {
+  ready: (callback: () => void) => void;
+  execute: (siteKey: string, options: { action: string }) => Promise<string>;
+}
+
+interface WindowWithGrecaptcha extends Window {
+  grecaptcha: {
+    enterprise: GrecaptchaEnterprise;
+  };
+}
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,8 +26,6 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [recaptchaToken, setRecaptchaToken] = useState<string>('');
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,6 +49,7 @@ const ContactSection = () => {
     };
   }, []);
 
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -50,16 +60,30 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!recaptchaToken) {
-      setSubmitStatus('error');
-      return;
-    }
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
+      // Execute reCAPTCHA Enterprise
+      const token = await new Promise<string>((resolve, reject) => {
+        if (typeof window !== 'undefined' && (window as unknown as WindowWithGrecaptcha).grecaptcha) {
+          (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.ready(async () => {
+            try {
+               const recaptchaToken = await (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.execute(
+                 process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '',
+                 { action: 'CONTACT_FORM' }
+               );
+              resolve(recaptchaToken);
+            } catch (error) {
+              reject(error);
+            }
+          });
+        } else {
+          reject(new Error('reCAPTCHA not loaded'));
+        }
+      });
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -67,7 +91,7 @@ const ContactSection = () => {
         },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken,
+          recaptchaToken: token,
         }),
       });
 
@@ -76,11 +100,6 @@ const ContactSection = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
-        setRecaptchaToken('');
-        // Reset reCAPTCHA
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
       } else {
         setSubmitStatus('error');
       }
@@ -306,22 +325,9 @@ const ContactSection = () => {
                   />
                 </div>
 
-                {/* reCAPTCHA */}
-                <div className="flex justify-center">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-                    onChange={(token: string | null) => setRecaptchaToken(token || '')}
-                    onExpired={() => setRecaptchaToken('')}
-                    onError={() => setRecaptchaToken('')}
-                    theme="light"
-                    size="normal"
-                  />
-                </div>
-
                 <button
                   type="submit"
-                  disabled={isSubmitting || !recaptchaToken}
+                  disabled={isSubmitting}
                   className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {isSubmitting ? t('contact.sending') : t('contact.send')}

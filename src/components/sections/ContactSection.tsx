@@ -1,33 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { useTranslationContext } from '../TranslationProvider';
-
-// Type definition for reCAPTCHA Enterprise
-interface GrecaptchaEnterprise {
-  ready: (callback: () => void) => void;
-  execute: (siteKey: string, options: { action: string }) => Promise<string>;
-}
-
-interface WindowWithGrecaptcha extends Window {
-  grecaptcha: {
-    enterprise: GrecaptchaEnterprise;
-  };
-}
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useTranslationContext();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
-  const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
+
+  // Get Formspree form ID from environment
+  const formspreeFormId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || '';
+  const [state, handleSubmit] = useForm(formspreeFormId);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,141 +33,6 @@ const ContactSection = () => {
       }
     };
   }, []);
-
-  // Check reCAPTCHA loading status
-  useEffect(() => {
-    const checkRecaptcha = () => {
-      if (typeof window !== 'undefined' && (window as unknown as WindowWithGrecaptcha).grecaptcha) {
-        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-        
-        if (!siteKey) {
-          setRecaptchaError('reCAPTCHA site key not configured');
-          return;
-        }
-
-        try {
-          (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.ready(() => {
-            setRecaptchaLoaded(true);
-            setRecaptchaError(null);
-            console.log('reCAPTCHA Enterprise loaded successfully');
-          });
-        } catch (error) {
-          setRecaptchaError('Failed to load reCAPTCHA Enterprise');
-          console.error('reCAPTCHA loading error:', error);
-        }
-      } else {
-        // Retry after a short delay
-        setTimeout(checkRecaptcha, 1000);
-      }
-    };
-
-    checkRecaptcha();
-  }, []);
-
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Check if reCAPTCHA is ready
-    if (!recaptchaLoaded) {
-      setSubmitStatus('error');
-      setRecaptchaError('reCAPTCHA is not ready. Please wait and try again.');
-      return;
-    }
-
-    if (recaptchaError) {
-      setSubmitStatus('error');
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setRecaptchaError(null);
-
-    try {
-      // Execute reCAPTCHA Enterprise with better error handling
-      const token = await new Promise<string>((resolve, reject) => {
-        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-        
-        if (!siteKey) {
-          reject(new Error('reCAPTCHA site key not configured'));
-          return;
-        }
-
-        if (typeof window !== 'undefined' && (window as unknown as WindowWithGrecaptcha).grecaptcha) {
-          (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.ready(async () => {
-            try {
-              console.log('Executing reCAPTCHA with site key:', siteKey);
-              const recaptchaToken = await (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.execute(
-                siteKey,
-                { action: 'CONTACT_FORM' }
-              );
-              console.log('reCAPTCHA token generated successfully');
-              resolve(recaptchaToken);
-            } catch (error) {
-              console.error('reCAPTCHA execution error:', error);
-              reject(error);
-            }
-          });
-        } else {
-          reject(new Error('reCAPTCHA not loaded'));
-        }
-      });
-
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          recaptchaToken: token,
-        }),
-      });
-
-      await response.json();
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      
-      // Handle specific reCAPTCHA errors
-      if (error instanceof Error) {
-        if (error.message.includes('Invalid site key')) {
-          setRecaptchaError('Invalid reCAPTCHA site key. Please check your configuration.');
-        } else if (error.message.includes('not loaded')) {
-          setRecaptchaError('reCAPTCHA is not loaded. Please refresh the page.');
-        } else if (error.message.includes('not configured')) {
-          setRecaptchaError('reCAPTCHA site key is not configured.');
-        } else {
-          setRecaptchaError(`reCAPTCHA error: ${error.message}`);
-        }
-      }
-      
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      
-      // Reset status after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle');
-        setRecaptchaError(null);
-      }, 5000);
-    }
-  };
 
   const contactInfo = [
     {
@@ -248,15 +96,6 @@ const ContactSection = () => {
         </svg>
       )
     }
-    // {
-    //   name: "Portfolio",
-    //   url: "https://onlyfansthomasdev.netlify.app/",
-    //   icon: (
-    //     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-    //     </svg>
-    //   )
-    // }
   ];
 
   return (
@@ -329,101 +168,114 @@ const ContactSection = () => {
                 {t('contact.sendMessage')}
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {state.succeeded ? (
+                <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                  <p className="font-semibold">Thank you for your message!</p>
+                  <p>I&apos;ll get back to you as soon as possible.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                        {t('contact.fullName')} *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
+                        placeholder={t('contact.fullNamePlaceholder')}
+                      />
+                      <ValidationError
+                        prefix="Name"
+                        field="name"
+                        errors={state.errors}
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                        {t('contact.email')} *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
+                        placeholder={t('contact.emailPlaceholder')}
+                      />
+                      <ValidationError
+                        prefix="Email"
+                        field="email"
+                        errors={state.errors}
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      {t('contact.fullName')} *
+                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                      {t('contact.subject')} *
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
+                      id="subject"
+                      name="subject"
                       required
                       className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
-                      placeholder={t('contact.fullNamePlaceholder')}
+                      placeholder={t('contact.subjectPlaceholder')}
+                    />
+                    <ValidationError
+                      prefix="Subject"
+                      field="subject"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
+
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      {t('contact.email')} *
+                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                      {t('contact.message')} *
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
+                    <textarea
+                      id="message"
+                      name="message"
                       required
-                      className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
-                      placeholder={t('contact.emailPlaceholder')}
+                      rows={6}
+                      className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground resize-none"
+                      placeholder={t('contact.messagePlaceholder')}
+                    />
+                    <ValidationError
+                      prefix="Message"
+                      field="message"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                    {t('contact.subject')} *
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
-                    placeholder={t('contact.subjectPlaceholder')}
-                  />
-                </div>
+                  <button
+                    type="submit"
+                    disabled={state.submitting}
+                    className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    {state.submitting ? t('contact.sending') : t('contact.send')}
+                  </button>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    {t('contact.message')} *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground resize-none"
-                    placeholder={t('contact.messagePlaceholder')}
-                  />
-                </div>
-
-                       <button
-                         type="submit"
-                         disabled={isSubmitting || !recaptchaLoaded || !!recaptchaError}
-                         className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                       >
-                         {isSubmitting ? t('contact.sending') : 
-                          !recaptchaLoaded ? 'Loading reCAPTCHA...' : 
-                          recaptchaError ? 'reCAPTCHA Error' : 
-                          t('contact.send')}
-                       </button>
-
-                {submitStatus === 'success' && (
-                  <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                    {t('contact.success')}
-                  </div>
-                )}
-
-                       {recaptchaError && (
-                         <div className="p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded-lg">
-                           <strong>reCAPTCHA Error:</strong> {recaptchaError}
-                         </div>
-                       )}
-
-                       {submitStatus === 'error' && !recaptchaError && (
-                         <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                           {t('contact.error')}
-                         </div>
-                       )}
-              </form>
+                  {state.errors && Object.keys(state.errors).length > 0 && (
+                    <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                      <p className="font-semibold">Please fix the following errors:</p>
+                      <ul className="list-disc list-inside mt-2">
+                        {Object.entries(state.errors).map(([field, error], index) => (
+                          <li key={index}>{field}: {Array.isArray(error) ? error.join(', ') : error}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </form>
+              )}
             </div>
           </div>
         </div>

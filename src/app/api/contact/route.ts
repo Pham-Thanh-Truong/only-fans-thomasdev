@@ -9,8 +9,8 @@ const resend = new Resend(process.env.RESEND_API_KEY || 'dummy-key-for-build');
  * Based on Google Cloud reCAPTCHA Enterprise documentation
  */
 async function createAssessment({
-  projectID = process.env.GOOGLE_CLOUD_PROJECT_ID || "my-project-onlyfans",
-  recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6Lc9GOsrAAAAAIK48eUomlAPBW96z99GCupAotrf",
+  projectID = process.env.GOOGLE_CLOUD_PROJECT_ID || "",
+  recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "",
   token = "action-token",
   recaptchaAction = "CONTACT_FORM",
 }) {

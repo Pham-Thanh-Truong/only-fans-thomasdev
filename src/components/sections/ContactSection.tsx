@@ -26,6 +26,8 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,6 +51,36 @@ const ContactSection = () => {
     };
   }, []);
 
+  // Check reCAPTCHA loading status
+  useEffect(() => {
+    const checkRecaptcha = () => {
+      if (typeof window !== 'undefined' && (window as unknown as WindowWithGrecaptcha).grecaptcha) {
+        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+        
+        if (!siteKey) {
+          setRecaptchaError('reCAPTCHA site key not configured');
+          return;
+        }
+
+        try {
+          (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.ready(() => {
+            setRecaptchaLoaded(true);
+            setRecaptchaError(null);
+            console.log('reCAPTCHA Enterprise loaded successfully');
+          });
+        } catch (error) {
+          setRecaptchaError('Failed to load reCAPTCHA Enterprise');
+          console.error('reCAPTCHA loading error:', error);
+        }
+      } else {
+        // Retry after a short delay
+        setTimeout(checkRecaptcha, 1000);
+      }
+    };
+
+    checkRecaptcha();
+  }, []);
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -61,21 +93,44 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Check if reCAPTCHA is ready
+    if (!recaptchaLoaded) {
+      setSubmitStatus('error');
+      setRecaptchaError('reCAPTCHA is not ready. Please wait and try again.');
+      return;
+    }
+
+    if (recaptchaError) {
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setRecaptchaError(null);
 
     try {
-      // Execute reCAPTCHA Enterprise
+      // Execute reCAPTCHA Enterprise with better error handling
       const token = await new Promise<string>((resolve, reject) => {
+        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+        
+        if (!siteKey) {
+          reject(new Error('reCAPTCHA site key not configured'));
+          return;
+        }
+
         if (typeof window !== 'undefined' && (window as unknown as WindowWithGrecaptcha).grecaptcha) {
           (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.ready(async () => {
             try {
-               const recaptchaToken = await (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.execute(
-                 process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '',
-                 { action: 'CONTACT_FORM' }
-               );
+              console.log('Executing reCAPTCHA with site key:', siteKey);
+              const recaptchaToken = await (window as unknown as WindowWithGrecaptcha).grecaptcha.enterprise.execute(
+                siteKey,
+                { action: 'CONTACT_FORM' }
+              );
+              console.log('reCAPTCHA token generated successfully');
               resolve(recaptchaToken);
             } catch (error) {
+              console.error('reCAPTCHA execution error:', error);
               reject(error);
             }
           });
@@ -105,6 +160,20 @@ const ContactSection = () => {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
+      
+      // Handle specific reCAPTCHA errors
+      if (error instanceof Error) {
+        if (error.message.includes('Invalid site key')) {
+          setRecaptchaError('Invalid reCAPTCHA site key. Please check your configuration.');
+        } else if (error.message.includes('not loaded')) {
+          setRecaptchaError('reCAPTCHA is not loaded. Please refresh the page.');
+        } else if (error.message.includes('not configured')) {
+          setRecaptchaError('reCAPTCHA site key is not configured.');
+        } else {
+          setRecaptchaError(`reCAPTCHA error: ${error.message}`);
+        }
+      }
+      
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -112,6 +181,7 @@ const ContactSection = () => {
       // Reset status after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
+        setRecaptchaError(null);
       }, 5000);
     }
   };
@@ -325,13 +395,16 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  {isSubmitting ? t('contact.sending') : t('contact.send')}
-                </button>
+                       <button
+                         type="submit"
+                         disabled={isSubmitting || !recaptchaLoaded || !!recaptchaError}
+                         className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                       >
+                         {isSubmitting ? t('contact.sending') : 
+                          !recaptchaLoaded ? 'Loading reCAPTCHA...' : 
+                          recaptchaError ? 'reCAPTCHA Error' : 
+                          t('contact.send')}
+                       </button>
 
                 {submitStatus === 'success' && (
                   <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
@@ -339,11 +412,17 @@ const ContactSection = () => {
                   </div>
                 )}
 
-                {submitStatus === 'error' && (
-                  <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                    {t('contact.error')}
-                  </div>
-                )}
+                       {recaptchaError && (
+                         <div className="p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded-lg">
+                           <strong>reCAPTCHA Error:</strong> {recaptchaError}
+                         </div>
+                       )}
+
+                       {submitStatus === 'error' && !recaptchaError && (
+                         <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                           {t('contact.error')}
+                         </div>
+                       )}
               </form>
             </div>
           </div>

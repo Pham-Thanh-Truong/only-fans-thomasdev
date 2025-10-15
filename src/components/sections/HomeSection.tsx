@@ -20,7 +20,7 @@ const HomeSection = () => {
           <div className="mb-8">
             <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg ring-4 ring-primary/20">
               <Image
-                src="/assets/profile.jpg"
+                src="/assets/profile_2.jpg"
                 alt="Pham Thanh Truong"
                 width={128}
                 height={128}

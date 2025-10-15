@@ -39,26 +39,27 @@ const EducationSection = () => {
     }
   ];
 
-  const certifications = [
-    {
-      name: "React Developer Certification",
-      issuer: "Meta",
-      date: "2023",
-      description: "Chứng chỉ phát triển ứng dụng React từ Meta"
-    },
-    {
-      name: "AWS Cloud Practitioner",
-      issuer: "Amazon Web Services",
-      date: "2023",
-      description: "Chứng chỉ cơ bản về AWS Cloud"
-    },
-    {
-      name: "TypeScript Fundamentals",
-      issuer: "Microsoft",
-      date: "2022",
-      description: "Khóa học cơ bản về TypeScript"
-    }
-  ];
+  // Certifications data (currently not displayed)
+  // const certifications = [
+  //   {
+  //     name: "React Developer Certification",
+  //     issuer: "Meta",
+  //     date: "2023",
+  //     description: "Chứng chỉ phát triển ứng dụng React từ Meta"
+  //   },
+  //   {
+  //     name: "AWS Cloud Practitioner",
+  //     issuer: "Amazon Web Services",
+  //     date: "2023",
+  //     description: "Chứng chỉ cơ bản về AWS Cloud"
+  //   },
+  //   {
+  //     name: "TypeScript Fundamentals",
+  //     issuer: "Microsoft",
+  //     date: "2022",
+  //     description: "Khóa học cơ bản về TypeScript"
+  //   }
+  // ];
 
   return (
     <section id="education" className="py-20 bg-muted">

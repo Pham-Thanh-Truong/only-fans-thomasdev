@@ -41,7 +41,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Content */}
           <div className="space-y-6">
             <div>
@@ -58,15 +58,15 @@ const AboutSection = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-foreground">Frontend & Mobile</span>
+                <span className="text-foreground">Frontend, Mobile & Backend</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-foreground">React & Next.js</span>
+                <span className="text-foreground">React, React Native, Next.js & Laravel</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-foreground">TypeScript Expert</span>
+                <span className="text-foreground">TypeScript, JavaScript & PHP</span>
               </div>
             </div>
           </div>

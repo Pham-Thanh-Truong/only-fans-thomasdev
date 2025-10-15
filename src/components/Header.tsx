@@ -25,8 +25,8 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="#home" className="text-xl font-bold text-primary">
-              Pham Thanh Truong
+            <Link href="/" className="text-xl font-bold text-primary">
+              Thomas Pham
             </Link>
           </div>
 

@@ -19,8 +19,8 @@
   },
   "about": {
     "title": "Giới thiệu",
-    "subtitle": "Tìm hiểu thêm về hành trình phát triển và đam mê của tôi trong lĩnh vực công nghệ",
-    "description": "Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile sử dụng React, React Native, và Next.js. Có kỹ năng xây dựng giao diện người dùng phản hồi, hiệu suất cao và kinh nghiệm tích hợp hệ thống VoIP SIP. Đam mê viết mã sạch, dễ bảo trì và liên tục cải thiện chất lượng sản phẩm.",
+    "subtitle": "Tìm hiểu thêm!",
+    "description": "Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile sử dụng React, React Native, Next.js và Laravel. Có kỹ năng xây dựng giao diện người dùng phản hồi, hiệu suất cao và kinh nghiệm tích hợp hệ thống VoIP SIP. Đam mê viết mã sạch, dễ bảo trì và liên tục cải thiện chất lượng sản phẩm.",
     "experience": "Kinh nghiệm",
     "years": "năm",
     "projects": "Dự án",
@@ -29,7 +29,7 @@
   },
   "experience": {
     "title": "Kinh nghiệm làm việc",
-    "subtitle": "Hành trình nghề nghiệp",
+    "subtitle": "",
     "mudbathNextjs": {
       "title": "Mudbath - Next.js Developer",
       "period": "Tháng 5 2024 - Tháng 7 2024 | New South Wales, Australia",
@@ -139,7 +139,19 @@
     "preferredContact": "Cách liên hệ ưa thích",
     "preferredContactValue": "Email hoặc LinkedIn",
     "thankYou": "Cảm ơn bạn đã ghé thăm!",
-    "lookingForward": "Tôi mong được nghe từ bạn sớm."
+    "lookingForward": "Tôi mong được nghe từ bạn sớm.",
+    "sendMessage": "Gửi tin nhắn",
+    "contactInfo": "Thông tin liên hệ",
+    "followMe": "Theo dõi tôi",
+    "fullName": "Họ và tên",
+    "fullNamePlaceholder": "Nhập họ và tên",
+    "emailPlaceholder": "Nhập email",
+    "subject": "Chủ đề",
+    "subjectPlaceholder": "Nhập chủ đề",
+    "messagePlaceholder": "Nhập tin nhắn của bạn...",
+    "sending": "Đang gửi...",
+    "success": "Tin nhắn đã được gửi thành công!",
+    "error": "Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại."
   },
   "cv": {
     "title": "CV - Pham Thanh Truong",

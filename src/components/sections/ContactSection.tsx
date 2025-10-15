@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useTranslationContext } from '../TranslationProvider';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,6 +15,8 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [recaptchaToken, setRecaptchaToken] = useState<string>('');
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,19 +50,51 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!recaptchaToken) {
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmitStatus('idle');
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+        }),
+      });
+
+      await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setRecaptchaToken('');
+        // Reset reCAPTCHA
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+        }
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-
-      // Reset status after 3 seconds
+      
+      // Reset status after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
-      }, 3000);
-    }, 1000);
+      }, 5000);
+    }
   };
 
   const contactInfo = [
@@ -98,14 +133,32 @@ const ContactSection = () => {
 
   const socialLinks = [
     {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/thomas-pham-617855312/",
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zm-10.75 19h-3V9h3v10zm-1.5-11.268c-.966 0-1.75-.805-1.75-1.732 0-.926.784-1.732 1.75-1.732s1.75.806 1.75 1.732c0 .927-.784 1.732-1.75 1.732zm14.25 11.268h-3v-5.604c0-1.366-.027-3.124-1.904-3.124-1.906 0-2.196 1.493-2.196 3.027v5.701h-3V9h2.879v1.367h.041c.401-.758 1.387-1.559 2.854-1.559 3.052 0 3.617 2.008 3.617 4.617V19z"/>
+        </svg>
+      )
+    },
+    {
       name: "GitHub",
-      url: "https://github.com/Pham-Thanh-Truong",
+      url: "https://github.com/Pham-Thanh-Truong/",
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
         </svg>
       )
     },
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/thisistruong/",
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+        </svg>
+      )
+    }
     // {
     //   name: "Portfolio",
     //   url: "https://onlyfansthomasdev.netlify.app/",
@@ -135,11 +188,10 @@ const ContactSection = () => {
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-semibold text-foreground mb-6">
-                  Thông tin liên hệ
+                  {t('contact.contactInfo')}
                 </h3>
                 <p className="text-muted-foreground mb-8">
-                  Tôi luôn sẵn sàng lắng nghe và thảo luận về các dự án thú vị.
-                  Hãy liên hệ với tôi qua bất kỳ phương thức nào dưới đây.
+                  {t('contact.description')}
                 </p>
               </div>
 
@@ -164,7 +216,7 @@ const ContactSection = () => {
               {/* Social Links */}
               <div>
                 <h4 className="text-lg font-semibold text-foreground mb-4">
-                  Mạng xã hội
+                  {t('contact.followMe')}
                 </h4>
                 <div className="flex space-x-4">
                   {socialLinks.map((social, index) => (
@@ -185,14 +237,14 @@ const ContactSection = () => {
             {/* Contact Form */}
             <div className="bg-card rounded-lg border border-border p-8">
               <h3 className="text-2xl font-semibold text-foreground mb-6">
-                Gửi tin nhắn
+                {t('contact.sendMessage')}
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Họ và tên *
+                      {t('contact.fullName')} *
                     </label>
                     <input
                       type="text"
@@ -202,12 +254,12 @@ const ContactSection = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
-                      placeholder="Nhập họ và tên"
+                      placeholder={t('contact.fullNamePlaceholder')}
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email *
+                      {t('contact.email')} *
                     </label>
                     <input
                       type="email"
@@ -217,14 +269,14 @@ const ContactSection = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
-                      placeholder="Nhập email"
+                      placeholder={t('contact.emailPlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                    Chủ đề *
+                    {t('contact.subject')} *
                   </label>
                   <input
                     type="text"
@@ -234,13 +286,13 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground"
-                    placeholder="Nhập chủ đề"
+                    placeholder={t('contact.subjectPlaceholder')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Tin nhắn *
+                    {t('contact.message')} *
                   </label>
                   <textarea
                     id="message"
@@ -250,27 +302,40 @@ const ContactSection = () => {
                     required
                     rows={6}
                     className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground resize-none"
-                    placeholder="Nhập tin nhắn của bạn"
+                    placeholder={t('contact.messagePlaceholder')}
+                  />
+                </div>
+
+                {/* reCAPTCHA */}
+                <div className="flex justify-center">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+                    onChange={(token: string | null) => setRecaptchaToken(token || '')}
+                    onExpired={() => setRecaptchaToken('')}
+                    onError={() => setRecaptchaToken('')}
+                    theme="light"
+                    size="normal"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !recaptchaToken}
                   className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isSubmitting ? 'Đang gửi...' : 'Gửi tin nhắn'}
+                  {isSubmitting ? t('contact.sending') : t('contact.send')}
                 </button>
 
                 {submitStatus === 'success' && (
                   <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                    Cảm ơn bạn! Tin nhắn đã được gửi thành công. Tôi sẽ phản hồi sớm nhất có thể.
+                    {t('contact.success')}
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
                   <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                    Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau.
+                    {t('contact.error')}
                   </div>
                 )}
               </form>

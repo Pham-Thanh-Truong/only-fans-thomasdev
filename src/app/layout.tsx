@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pham Thanh Truong - Software Developer",
-  description: "Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile sử dụng React, React Native, và Next.js.",
+  description: "Software Developer với 3 năm kinh nghiệm trong phát triển web và mobile sử dụng React, React Native, Next.js và Laravel.",
   keywords: "Software Developer, React, React Native, Next.js, TypeScript, JavaScript, Web Development",
   authors: [{ name: "Pham Thanh Truong" }],
   creator: "Pham Thanh Truong",

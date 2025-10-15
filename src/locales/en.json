@@ -20,7 +20,7 @@
   "about": {
     "title": "About Me",
     "subtitle": "Learn more about my development journey and passion in technology",
-    "description": "Software Developer with 3 years of experience in web and mobile development using React, React Native, and Next.js. Skilled in building responsive, high-performance user interfaces and experienced in VoIP SIP system integration. Passionate about writing clean, maintainable code and continuously improving product quality.",
+    "description": "Software Developer with 3 years of experience in web and mobile development using React, React Native, Next.js and Laravel. Skilled in building responsive, high-performance user interfaces and experienced in VoIP SIP system integration. Passionate about writing clean, maintainable code and continuously improving product quality.",
     "experience": "Experience",
     "years": "years",
     "projects": "Projects",
@@ -139,7 +139,19 @@
     "preferredContact": "Preferred Contact",
     "preferredContactValue": "Email or LinkedIn",
     "thankYou": "Thank you for visiting!",
-    "lookingForward": "I look forward to hearing from you soon."
+    "lookingForward": "I look forward to hearing from you soon.",
+    "sendMessage": "Send Message",
+    "contactInfo": "Contact Info",
+    "followMe": "Follow Me",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "emailPlaceholder": "Enter your email",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter subject",
+    "messagePlaceholder": "Enter your message...",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "An error occurred while sending the message. Please try again."
   },
   "cv": {
     "title": "CV - Pham Thanh Truong",

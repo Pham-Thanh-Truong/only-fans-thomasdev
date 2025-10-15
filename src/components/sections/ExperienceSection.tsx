@@ -45,7 +45,7 @@ const ExperienceSection = () => {
       ]
     },
     {
-      title: "React Native Developer",
+      title: "ReactJs Developer",
       company: "Mudbath",
       period: "Feb 2024 - May 2024",
       location: "New South Wales, Australia",

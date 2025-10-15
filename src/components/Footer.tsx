@@ -62,6 +62,16 @@ const Footer = () => {
               <p>📍 Da Nang City, Viet Nam</p>
               <div className="flex space-x-4 pt-2">
                 <Link 
+                  href="https://www.linkedin.com/in/thomas-pham-617855312/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zm-10.75 19h-3V9h3v10zm-1.5-11.268c-.966 0-1.75-.805-1.75-1.732 0-.926.784-1.732 1.75-1.732s1.75.806 1.75 1.732c0 .927-.784 1.732-1.75 1.732zm14.25 11.268h-3v-5.604c0-1.366-.027-3.124-1.904-3.124-1.906 0-2.196 1.493-2.196 3.027v5.701h-3V9h2.879v1.367h.041c.401-.758 1.387-1.559 2.854-1.559 3.052 0 3.617 2.008 3.617 4.617V19z"/>
+                  </svg>
+                </Link>
+                <Link 
                   href="https://github.com/Pham-Thanh-Truong" 
                   target="_blank" 
                   rel="noopener noreferrer"
@@ -72,13 +82,13 @@ const Footer = () => {
                   </svg>
                 </Link>
                 <Link 
-                  href="https://onlyfansthomasdev.netlify.app/" 
+                  href="https://www.facebook.com/thisistruong/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
                   </svg>
                 </Link>
               </div>

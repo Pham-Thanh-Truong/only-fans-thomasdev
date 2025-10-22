@@ -79,7 +79,7 @@ const AboutSection = () => {
                 <div className="text-muted-foreground">Năm kinh nghiệm</div>
               </div>
               <div className="bg-card p-6 rounded-lg border border-border text-center">
-                <div className="text-3xl font-bold text-primary mb-2">10+</div>
+                <div className="text-3xl font-bold text-primary mb-2">6+</div>
                 <div className="text-muted-foreground">Dự án hoàn thành</div>
               </div>
               <div className="bg-card p-6 rounded-lg border border-border text-center">
@@ -98,7 +98,7 @@ const AboutSection = () => {
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Tuổi:</span>
-                  <span className="text-foreground">26</span>
+                  <span className="text-foreground">{new Date().getFullYear() - 2001}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Địa chỉ:</span>

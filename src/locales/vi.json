@@ -25,7 +25,21 @@
     "years": "năm",
     "projects": "Dự án",
     "clients": "Khách hàng",
-    "technologies": "Công nghệ"
+    "technologies": "Công nghệ",
+    "personalInfo": {
+      "title": "Thông tin cá nhân",
+      "age": "Tuổi",
+      "address": "Địa chỉ",
+      "addressValue": "Đà Nẵng, Việt Nam",
+      "email": "Email",
+      "phone": "Điện thoại"
+    },
+    "stats": {
+      "yearsExperience": "Năm kinh nghiệm",
+      "completedProjects": "Dự án hoàn thành",
+      "mainTechnologies": "Công nghệ chính",
+      "qualityCommitment": "Cam kết chất lượng"
+    }
   },
   "experience": {
     "title": "Kinh nghiệm làm việc",

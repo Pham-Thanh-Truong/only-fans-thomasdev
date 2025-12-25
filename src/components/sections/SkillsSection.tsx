@@ -33,35 +33,31 @@ const SkillsSection = () => {
     {
       title: "Frameworks / Platforms",
       skills: [
-        { name: "NextJS", level: 80 },
-        { name: "NestJS", level: 70 },
         { name: "ReactJS", level: 80 },
-        { name: "React Native", level: 85 },
+        { name: "NextJS", level: 80 },
+        { name: "NestJS", level: 80 },
+        { name: "React Native", level: 80 },
         { name: "VueJS", level: 50 },
-        { name: "Laravel", level: 90 },
-        { name: "NodeJS", level: 75 }
+        { name: "Laravel", level: 70 },
+        { name: "NodeJS", level: 70 }
       ]
     },
     {
       title: "Programming Languages",
       skills: [
-        { name: "TypeScript", level: 90 },
-        { name: "Javascript", level: 95 },
-        { name: "PHP", level: 80 }
+        { name: "TypeScript", level: 70 },
+        { name: "Javascript", level: 70 },
+        { name: "PHP", level: 70 }
       ]
     },
     {
       title: "Tools and Technologies",
       skills: [
-        { name: "Git", level: 85 },
-        { name: "Github", level: 90 },
-        { name: "Docker", level: 70 },
-        { name: "VoIP SIP", level: 75 },
-        { name: "AWS", level: 50 },
-        { name: "Azure", level: 40 },
-        { name: "Google Cloud", level: 40 },
-        { name: "Contentful", level: 90 },
-        { name: "Cloudflare", level: 50 }
+        { name: "Git", level: 65 },
+        { name: "Github", level: 65 },
+        { name: "Docker", level: 50 },
+        { name: "VoIP SIP", level: 70 },
+        { name: "Contentful", level: 80 }
       ]
     }
   ];

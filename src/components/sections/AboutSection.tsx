@@ -76,41 +76,42 @@ const AboutSection = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-card p-6 rounded-lg border border-border text-center">
                 <div className="text-3xl font-bold text-primary mb-2">3+</div>
-                <div className="text-muted-foreground">Năm kinh nghiệm</div>
+                <div className="text-muted-foreground">{t('about.stats.yearsExperience')}</div>
               </div>
               <div className="bg-card p-6 rounded-lg border border-border text-center">
                 <div className="text-3xl font-bold text-primary mb-2">6+</div>
-                <div className="text-muted-foreground">Dự án hoàn thành</div>
+                <div className="text-muted-foreground">{t('about.stats.completedProjects')}</div>
               </div>
               <div className="bg-card p-6 rounded-lg border border-border text-center">
                 <div className="text-3xl font-bold text-primary mb-2">5+</div>
-                <div className="text-muted-foreground">Công nghệ chính</div>
+                <div className="text-muted-foreground">{t('about.stats.mainTechnologies')}</div>
               </div>
               <div className="bg-card p-6 rounded-lg border border-border text-center">
                 <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <div className="text-muted-foreground">Cam kết chất lượng</div>
+                <div className="text-muted-foreground">{t('about.stats.qualityCommitment')}</div>
               </div>
             </div>
 
             {/* Personal Info */}
             <div className="bg-card p-6 rounded-lg border border-border">
-              <h4 className="text-lg font-semibold text-foreground mb-4">Thông tin cá nhân</h4>
+              <h4 className="text-lg font-semibold text-foreground mb-4">{t('about.personalInfo.title')}</h4>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Tuổi:</span>
+                  {/* Keep age dynamic but add ability to hardcode if needed in future */}
+                  <span className="text-muted-foreground">{t('about.personalInfo.age')}:</span>
                   <span className="text-foreground">{new Date().getFullYear() - 2001}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Địa chỉ:</span>
-                  <span className="text-foreground">Đà Nẵng, Việt Nam</span>
+                <div className="flex justify-between items-start">
+                  <span className="text-muted-foreground">{t('about.personalInfo.address')}:</span>
+                  <span className="text-foreground text-right">{t('about.personalInfo.addressValue')}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Email:</span>
-                  <span className="text-foreground">thanhtruongdn@gmail.com</span>
+                <div className="flex justify-between items-start">
+                  <span className="text-muted-foreground">{t('about.personalInfo.email')}:</span>
+                  <span className="text-foreground break-all text-right">thanhtruongdn@gmail.com</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Điện thoại:</span>
-                  <span className="text-foreground">(+84) 382 848 272</span>
+                <div className="flex justify-between items-start">
+                  <span className="text-muted-foreground">{t('about.personalInfo.phone')}:</span>
+                  <span className="text-foreground text-right">(+84) 382 848 272</span>
                 </div>
               </div>
             </div>

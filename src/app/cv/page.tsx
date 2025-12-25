@@ -37,7 +37,7 @@ const CVPage = () => {
               {t('cv.title')}
             </h1>
             <a
-              href="/assets/thomaspham-junior-cv.pdf"
+              href="/assets/PhamThanhTruong-Junior-CV.pdf"
               download="Pham-Thanh-Truong-CV.pdf"
               className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
             >
@@ -50,7 +50,7 @@ const CVPage = () => {
       {/* PDF Viewer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-card rounded-lg border border-border overflow-hidden">
-          <PDFViewer file="/assets/thomaspham-junior-cv.pdf" />
+          <PDFViewer file="/assets/PhamThanhTruong-Junior-CV.pdf" />
         </div>
 
         {/* Navigation Help */}
@@ -73,7 +73,7 @@ const CVPage = () => {
                 Nếu bạn muốn lưu CV về máy hoặc xem offline:
               </p>
               <a
-                href="/assets/thomaspham-junior-cv.pdf"
+                href="/assets/PhamThanhTruong-Junior-CV.pdf"
                 download="Pham-Thanh-Truong-CV.pdf"
                 className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm"
               >

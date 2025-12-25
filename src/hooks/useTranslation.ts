@@ -159,7 +159,7 @@ type TranslationKeys = {
 
 const useTranslation = () => {
   const [translations, setTranslations] = useState<TranslationKeys | null>(null);
-  const [locale, setLocale] = useState<string>('vi');
+  const [locale, setLocale] = useState<string>('en');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -168,7 +168,7 @@ const useTranslation = () => {
       // Server-side: load default translations
       const loadDefaultTranslations = async () => {
         try {
-          const translationModule = await import('../locales/vi.json');
+          const translationModule = await import('../locales/en.json');
           setTranslations(translationModule.default);
           setIsLoading(false);
         } catch (error) {
@@ -181,7 +181,7 @@ const useTranslation = () => {
     }
 
     // Client-side: get locale from localStorage
-    const savedLocale = localStorage.getItem('locale') || 'vi';
+    const savedLocale = localStorage.getItem('locale') || 'en';
     setLocale(savedLocale);
     
     // Load translations
@@ -192,9 +192,9 @@ const useTranslation = () => {
         setTranslations(translationModule.default);
       } catch (error) {
         console.error('Error loading translations:', error);
-        // Fallback to Vietnamese
+        // Fallback to English
         try {
-          const fallbackModule = await import('../locales/vi.json');
+          const fallbackModule = await import('../locales/en.json');
           setTranslations(fallbackModule.default);
         } catch (fallbackError) {
           console.error('Error loading fallback translations:', fallbackError);
@@ -238,9 +238,9 @@ const useTranslation = () => {
         setTranslations(translationModule.default);
       } catch (error) {
         console.error('Error loading translations:', error);
-        // Fallback to Vietnamese
+        // Fallback to English
         try {
-          const fallbackModule = await import('../locales/vi.json');
+          const fallbackModule = await import('../locales/en.json');
           setTranslations(fallbackModule.default);
         } catch (fallbackError) {
           console.error('Error loading fallback translations:', fallbackError);

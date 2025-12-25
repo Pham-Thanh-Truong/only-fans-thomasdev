@@ -25,7 +25,21 @@
     "years": "years",
     "projects": "Projects",
     "clients": "Clients",
-    "technologies": "Technologies"
+    "technologies": "Technologies",
+    "personalInfo": {
+      "title": "Personal Info",
+      "age": "Age",
+      "address": "Address",
+      "addressValue": "Da Nang, Vietnam",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "stats": {
+      "yearsExperience": "Years Experience",
+      "completedProjects": "Completed Projects",
+      "mainTechnologies": "Main Technologies",
+      "qualityCommitment": "Quality Commitment"
+    }
   },
   "experience": {
     "title": "Work Experience",

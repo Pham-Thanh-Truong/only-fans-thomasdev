@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "vi_VN",
-    url: "https://onlyfansthomasdev.netlify.app/",
+    url: "https://thomasworks.netlify.app/",
     title: "Pham Thanh Truong - Software Developer",
     description: "Sofware Developer với 3 năm kinh nghiệm trong phát triển web và mobile",
     siteName: "Pham Thanh Truong Portfolio",

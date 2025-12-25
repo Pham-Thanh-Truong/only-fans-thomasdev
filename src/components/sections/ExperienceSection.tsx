@@ -62,7 +62,7 @@ const ExperienceSection = () => {
       company: "ICT Global Solutions",
       period: "July 2024 - Mar 2025",
       location: "Da Nang, Viet Nam",
-      project: "Enrol (https://enrol.ch/)",
+      project: "Enrol (https://profile.enrol.ch/)",
       tech: ["Yii", "AngularJs", "MySQL", "PHP", "Javascript", "Payrexx", "Cloudflare"],
       cicd: "Google Cloud",
       responsibilities: [

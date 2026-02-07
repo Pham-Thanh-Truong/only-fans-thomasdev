@@ -16,7 +16,7 @@ const Header = () => {
     { name: t('navigation.skills'), href: '#skills' },
     { name: t('navigation.education'), href: '#education' },
     { name: t('navigation.contact'), href: '#contact' },
-    { name: t('navigation.cv'), href: '/cv' },
+    // { name: t('navigation.cv'), href: '/cv' },
   ];
 
   return (
@@ -38,12 +38,14 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  {...(item.href.startsWith('/') ? {} : { onClick: () => {
-                    const element = document.querySelector(item.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
+                  {...(item.href.startsWith('/') ? {} : {
+                    onClick: () => {
+                      const element = document.querySelector(item.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
                     }
-                  }})}
+                  })}
                 >
                   {item.name}
                 </Link>

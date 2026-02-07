@@ -8,12 +8,15 @@ import ContactSection from "@/components/sections/ContactSection";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <HomeSection />
-      <AboutSection />
-      <ExperienceSection />
-      <SkillsSection />
-      <EducationSection />
-      <ContactSection />
+      <div>
+        <h1 className="text-4xl font-bold text-center mt-10">Welcome to My Portfolio</h1>
+      </div>
+      {/* <HomeSection /> */}
+      {/* <AboutSection /> */}
+      {/* <ExperienceSection /> */}
+      {/* <SkillsSection /> */}
+      {/* <EducationSection /> */}
+      {/* <ContactSection /> */}
     </div>
   );
 }

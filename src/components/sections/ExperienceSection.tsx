@@ -144,20 +144,20 @@ const ExperienceSection = () => {
           <div className="relative space-y-12">
             {/* Timeline Line */}
             <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-blue-500/30 to-transparent md:left-1/2 md:-ml-0.5 hidden md:block"></div>
-            
+
             {experiences.map((exp, index) => (
               <div key={index} className={`relative flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center`}>
-                
+
                 {/* Timeline Dot */}
                 <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background transform -translate-x-2 md:-translate-x-2 mt-6 z-10 hidden md:block"></div>
-                
+
                 {/* Content Card */}
                 <div className={`w-full md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8'}`}>
                   <div className="group relative bg-card/80 backdrop-blur-sm border-l-4 border-l-primary/70 rounded-r-2xl rounded-l-md p-6 shadow-sm hover:shadow-xl transition-all duration-300">
-                    
+
                     {/* Floating Glow Effect */}
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-blue-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500 -z-10"></div>
-                    
+
                     {/* Header */}
                     <div className="flex flex-col mb-4">
                       <div className="flex lg:flex-row flex-col lg:justify-between lg:items-start items-start justify-between mb-2">
@@ -168,7 +168,7 @@ const ExperienceSection = () => {
                           {exp.period}
                         </span>
                       </div>
-                      
+
                       <div className="flex justify-between items-center w-full mt-1">
                         <div className="text-base font-semibold text-muted-foreground">
                           {exp.company}
@@ -213,18 +213,17 @@ const ExperienceSection = () => {
                           {exp.tech.map((tech, techIndex) => (
                             <span
                               key={techIndex}
-                              className={`px-2 py-0.5 rounded text-[11px] font-medium border ${
-                                ['NestJS', 'Next.js', 'ReactJs', 'Laravel', 'React Native'].includes(tech)
-                                  ? 'bg-primary/10 text-primary border-primary/20' 
-                                  : 'bg-muted text-muted-foreground border-border'
-                              }`}
+                              className={`px-2 py-0.5 rounded text-[11px] font-medium border ${['NestJS', 'Next.js', 'ReactJs', 'Laravel', 'React Native'].includes(tech)
+                                ? 'bg-primary/10 text-primary border-primary/20'
+                                : 'bg-muted text-muted-foreground border-border'
+                                }`}
                             >
                               {tech}
                             </span>
                           ))}
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center text-xs">
                         <span className="font-semibold text-muted-foreground mr-2">CI/CD:</span>
                         <span className="px-2 py-0.5 bg-secondary/50 text-secondary-foreground rounded border border-secondary">
